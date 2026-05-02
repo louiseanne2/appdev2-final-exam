@@ -32,7 +32,8 @@ export const login = mutation({
 export const register = mutation({
     args: {
         username: v.string(),
-        password: v.string()
+        password: v.string(),
+        
     },
     handler: async (ctx, args) => {
         const user = await ctx.db.query("users")
