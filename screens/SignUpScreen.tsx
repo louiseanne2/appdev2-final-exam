@@ -6,44 +6,50 @@ import {
   TouchableOpacity,
   TextInput,
 } from "react-native";
-import Ionicons from "@react-native-vector-icons/ionicons";
-import { login } from "../convex/users";
 
-export default function LoginScreen() {
+import Ionicons from "@react-native-vector-icons/ionicons";
+
+export default function SignUpScreen({ navigation }: any) {
   return (
     <View style={styles.container}>
+      
       {/* 1. Header Section */}
       <View style={styles.header}>
         <Image
-          source={require("./assets/SignUp.webp")}
+          source={require("../assets/signup.webp")}
           style={styles.image}
         />
       </View>
 
       {/* 2. Form Section */}
       <View style={styles.formContainer}>
-        <Text style={styles.label}>
-          Full Name
-        </Text>
+        
+        <Text style={styles.label}>Full Name</Text>
         <TextInput style={styles.input} placeholder="John Doe" />
 
-        <Text style={styles.label}>
-          Password
-        </Text>
-        <TextInput placeholder=" ********" style={styles.input} secureTextEntry={true} />
+        <Text style={styles.label}>Password</Text>
+        <TextInput
+          placeholder="********"
+          style={styles.input}
+          secureTextEntry={true}
+        />
 
-        
-
-        <TouchableOpacity style={styles.signUpButton}>
-        <Text style={styles.loginButtonText}>
-          Sign Up
-        </Text>
+        {/* ✅ SIGN UP BUTTON (now works) */}
+        <TouchableOpacity
+          style={styles.signUpButton}
+          onPress={() => {
+            console.log("Signing up...");
+            navigation.replace("Todo"); // or navigate("Login")
+          }}
+        >
+          <Text style={styles.signUpButtonText}>
+            Sign Up
+          </Text>
         </TouchableOpacity>
 
-        <Text style={styles.orText}>
-            Or
-        </Text>
+        <Text style={styles.orText}>Or</Text>
 
+        {/* Social buttons */}
         <View style={styles.socialRow}>
           <TouchableOpacity style={styles.socialIcon}>
             <Ionicons name="logo-google" size={30} color="#DB4437" />
@@ -58,12 +64,17 @@ export default function LoginScreen() {
           </TouchableOpacity>
         </View>
 
+        {/* ✅ FOOTER NAVIGATION FIXED */}
         <View style={styles.footer}>
           <Text>Already have an account?</Text>
-          <TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={() => navigation.navigate("Login")}
+          >
             <Text style={styles.linkText}>Login</Text>
           </TouchableOpacity>
         </View>
+
       </View>
     </View>
   );

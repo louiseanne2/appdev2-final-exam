@@ -16,7 +16,8 @@ import { useQuery, useMutation } from "convex/react";
 import { api } from "../convex/_generated/api";
 import { Id } from "../convex/_generated/dataModel";
 
-const TodoScreen = ({ userId }: {userId: Id<"users">}) => {
+const TodoScreen = ({ route }: { route: any }) => {
+    const { userId } = route.params;
     const [task, setTask] = useState('');
     const [searchQuery, setSearchQuery] = useState('');
 
